@@ -22,6 +22,6 @@ def test(damage_rect, image_name):
 
 if __name__ == "__main__":
     # test((120, 160, 10, 10), "../data/abbeyroad.jpg")
-    test((200, 160, 50, 50), "../data/cat_drawing.jpg")
+    # test((200, 160, 50, 50), "../data/cat_drawing.jpg")
     # test((290, 250, 100, 100), "../data/rocks.jpg")
     # test((290, 250, 100, 100), "../data/camo_hand.jpg")

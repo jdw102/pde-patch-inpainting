@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="118865ce-90c3-48be-9646-351182c55d9f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/transfer.py" afterDir="false" />
+    <list default="true" id="118865ce-90c3-48be-9646-351182c55d9f" name="Changes" comment="fix implementation of transfer">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/pde-patch-inpainting.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/transfer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,10 +99,23 @@
       <workItem from="1699747136757" duration="13000" />
       <workItem from="1700001833031" duration="2853000" />
     </task>
+    <task id="LOCAL-00001" summary="fix implementation of transfer">
+      <option name="closed" value="true" />
+      <created>1700006595388</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700006595388</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix implementation of transfer" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix implementation of transfer" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ece588$main.coverage" NAME="main Coverage Results" MODIFIED="1699625913984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

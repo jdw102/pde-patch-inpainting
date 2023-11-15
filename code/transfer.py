@@ -1,8 +1,11 @@
 import cv2
 import numpy as np
 from scipy.ndimage import gaussian_filter
-import math
-from matplotlib.pyplot import plt
+from findBoundryHelper1py import find_boundary_helper1
+from findBoundryHelper2py import find_boundary_helper2
+from givePatch1py import give_patch1
+
+import matplotlib.pyplot as plt
 
 a = cv2.imread('../inputs/transfer/rice.jpg').astype(float) / 255.0  # Input Texture
 b = cv2.imread('../inputs/transfer/bill.png').astype(float) / 255.0  # Input Image
@@ -44,50 +47,50 @@ for p in range(iterator):
             mask = np.zeros((w + o, w + o))
             temp1 = outputTexture[(i - 1) * w:i * w + o, (j - 1) * w:j * w + o]
             if i == 1 and j == 1:
-                nearPatch, nearPatch1 = givePatch1(al, a, inputTexture[0:w + o, 0:w + o], inputTarget[0:w + o, 0:w + o],
+                nearPatch, nearPatch1 = give_patch1(al, a, inputTexture[0:w + o, 0:w + o], inputTarget[0:w + o, 0:w + o],
                                                    temp1, mask)
                 outputTexture[0:w + o, 0:w + o] = nearPatch
                 outputTexture1[0:w + o, 0:w + o, :] = nearPatch1
                 continue
             elif i == 1:
                 mask[:, 0:o] = 1
-                nearPatch, nearPatch1 = givePatch1(al, a, inputTexture,
+                nearPatch, nearPatch1 = give_patch1(al, a, inputTexture,
                                                    inputTarget[(i - 1) * w:(i * w) + o, (j - 1) * w:(j * w) + o], temp1,
                                                    mask)
                 error = (nearPatch * mask - temp1 * mask) ** 2
                 error = error[:, 0:o]
-                cost, path = findBoundaryHelper1(error)
+                cost, path = find_boundary_helper1(error)
                 boundary = np.zeros((w + o, w + o))
                 _, ind = np.unravel_index(np.argmin(cost[0, :]), cost.shape)
-                boundary[:, 0:o] = findBoundaryHelper2(path, ind)
+                boundary[:, 0:o] = find_boundary_helper2(path, ind)
             elif j == 1:
                 mask[0:o, :] = 1
-                nearPatch, nearPatch1 = givePatch1(al, a, inputTexture,
+                nearPatch, nearPatch1 = give_patch1(al, a, inputTexture,
                                                    inputTarget[(i - 1) * w:(i * w) + o, (j - 1) * w:(j * w) + o], temp1,
                                                    mask)
                 error = (nearPatch * mask - temp1 * mask) ** 2
                 error = error[0:o, :]
-                cost, path = findBoundaryHelper1(error.T)
+                cost, path = find_boundary_helper1(error.T)
                 boundary = np.zeros((w + o, w + o))
                 _, ind = np.unravel_index(np.argmin(cost[0, :]), cost.shape)
-                boundary[0:o, :] = findBoundaryHelper2(path, ind).T
+                boundary[0:o, :] = find_boundary_helper2(path, ind).T
             else:
                 mask[:, 0:o] = 1
                 mask[0:o, :] = 1
-                nearPatch, nearPatch1 = givePatch1(al, a, inputTexture,
+                nearPatch, nearPatch1 = give_patch1(al, a, inputTexture,
                                                    inputTarget[(i - 1) * w:(i * w) + o, (j - 1) * w:(j * w) + o], temp1,
                                                    mask)
                 error = (nearPatch * mask - temp1 * mask) ** 2
                 error1 = error[0:o, :]
-                cost1, path1 = findBoundaryHelper1(error1.T)
+                cost1, path1 = find_boundary_helper1(error1.T)
                 error2 = error[:, 0:o]
-                cost2, path2 = findBoundaryHelper1(error2)
+                cost2, path2 = find_boundary_helper1(error2)
 
                 cost = cost1[0:o, :] + cost2[0:o, :]
                 boundary = np.zeros((w + o, w + o))
                 _, ind = np.unravel_index(np.argmin(np.diag(cost)), cost.shape)
-                boundary[0:o, ind:w + o] = findBoundaryHelper2(path1[ind:o + w, :], o - ind + 1).T
-                boundary[ind:o + w, 0:o] = findBoundaryHelper2(path2[ind:o + w, :], ind).T
+                boundary[0:o, ind:w + o] = find_boundary_helper2(path1[ind:o + w, :], o - ind + 1).T
+                boundary[ind:o + w, 0:o] = find_boundary_helper2(path2[ind:o + w, :], ind).T
                 boundary[0:ind - 1, 0:ind - 1] = 1
 
             smoothBoundary = gaussian_filter(boundary, sigma=1.5)

@@ -13,6 +13,11 @@ def load_damaged_image(damage_rect, image_name):
     return image, mask
 
 
+def load_image(image_name):
+    return cv.imread(image_name)
+
+
 def extract_rectangle(image, rect):
     x, y, height, width = rect
-    return image[y:y+height, x:x+width]
+    print(x, y, height, width)
+    return image[y:y + height, x:x + width]

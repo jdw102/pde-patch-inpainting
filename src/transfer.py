@@ -1,29 +1,29 @@
 import cv2
 import numpy as np
 from scipy.ndimage import gaussian_filter
-from code.findBoundryHelper1 import find_boundary_helper1
-from code.findBoundryHelper2 import find_boundary_helper2
-from code.givePatch1 import give_patch1
-
+from src.findBoundryHelper1 import find_boundary_helper1
+from src.findBoundryHelper2 import find_boundary_helper2
+from src.givePatch1 import give_patch1
+import cv2 as cv
 import matplotlib.pyplot as plt
-
+from image_util import extract_rectangle
 
 def texture_transfer(input_texture, input_image):
     print("transfering texture...")
-    a = input_texture.astype(float) / 255.0  # Input Texture
-    b = input_image.astype(float) / 255.0  # Input Image
-    cv2.imshow('a', a)
-    cv2.imshow('b', b)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    a = (input_texture.astype(np.float32) / 255.0).clip(0.0, 1.0)  # Input Texture
+    b = (input_image.astype(np.float32) / 255.0).clip(0.0, 1.0)
+    # cv2.imshow('a', a)
+    # cv2.imshow('b', b)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
 
     if a.ndim == 2:
         a = np.repeat(a[:, :, np.newaxis], 3, axis=2)
     if b.ndim == 2:
         b = np.repeat(b[:, :, np.newaxis], 3, axis=2)
 
-    inputTexture = cv2.cvtColor(a, cv2.COLOR_BGR2GRAY)
-    inputTarget = cv2.cvtColor(b, cv2.COLOR_BGR2GRAY)
+    inputTexture = cv.cvtColor(a, cv.COLOR_BGR2GRAY)
+    inputTarget = cv.cvtColor(b, cv.COLOR_BGR2GRAY)
 
     mask_in = inputTexture < -1
     mask_out = inputTarget < -1
@@ -41,8 +41,8 @@ def texture_transfer(input_texture, input_image):
     iterator = 2
 
     for p in range(iterator):
-        for i in range(1, m1 // w + 1):
-            for j in range(1, n1 // w + 1):
+        for i in range(m1 // w + 1):
+            for j in range(n1 // w + 1):
                 print(i, j)
                 if np.all(mask_out[(i - 1) * w:i * w + o, (j - 1) * w:j * w + o]):
                     outputTexture[(i - 1) * w:i * w + o, (j - 1) * w:j * w + o] = 0
@@ -50,14 +50,14 @@ def texture_transfer(input_texture, input_image):
                     continue
                 mask = np.zeros((w + o, w + o))
                 temp1 = outputTexture[(i - 1) * w:i * w + o, (j - 1) * w:j * w + o]
-                if i == 1 and j == 1:
+                if i == 0 and j == 0:
                     nearPatch, nearPatch1 = give_patch1(al, a, inputTexture[0:w + o, 0:w + o],
                                                         inputTarget[0:w + o, 0:w + o],
                                                         temp1, mask)
                     outputTexture[0:w + o, 0:w + o] = nearPatch
                     outputTexture1[0:w + o, 0:w + o, :] = nearPatch1
                     continue
-                elif i == 1:
+                elif i == 0:
                     mask[:, 0:o] = 1
                     nearPatch, nearPatch1 = give_patch1(al, a, inputTexture,
                                                         inputTarget[(i - 1) * w:(i * w) + o, (j - 1) * w:(j * w) + o],
@@ -69,7 +69,7 @@ def texture_transfer(input_texture, input_image):
                     boundary = np.zeros((w + o, w + o))
                     _, ind = np.unravel_index(np.argmin(cost[0, :]), cost.shape)
                     boundary[:, 0:o] = find_boundary_helper2(path, ind)
-                elif j == 1:
+                elif j == 0:
                     mask[0:o, :] = 1
                     nearPatch, nearPatch1 = give_patch1(al, a, inputTexture,
                                                         inputTarget[(i - 1) * w:(i * w) + o, (j - 1) * w:(j * w) + o],
@@ -132,3 +132,9 @@ def texture_transfer(input_texture, input_image):
     plt.figure()
     plt.imshow(output)
     plt.show()
+
+if __name__ == "__main__":
+    texture_image = cv.imread("../data/Granite-Rock.jpg")
+    texture = extract_rectangle(texture_image, (100, 50, 100, 100))
+    image = cv.imread("../data/cat_drawing.jpg")
+    texture_transfer(texture, image)

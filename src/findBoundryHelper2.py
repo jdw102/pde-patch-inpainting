@@ -9,7 +9,7 @@ Boundary Calculation: Iterates through the rows of the path matrix, updating the
 
 Updating Boundary Matrix: The boundary matrix is updated in a way that seems to trace a path or boundary within the matrix.
 '''
-
+import numpy as np
 # Translating MATLAB's findBoundaryHelper2 function to Python
 def find_boundary_helper2(path, ind):
     m, _ = path.shape
@@ -17,11 +17,10 @@ def find_boundary_helper2(path, ind):
     boundary[0, :ind] = 1
     prev = ind
 
-    for i in range(1, m):
-        prev = prev + path[i - 1, prev]
-        boundary[i, :prev] = 1
+    for i in range(1, m - 1):
+        prev = int(prev + path[i - 1, prev])
+        boundary[i, 0:prev] = 1
 
     return boundary
 
 # Displaying the Python function for verification
-find_boundary_helper2

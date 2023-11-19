@@ -19,5 +19,4 @@ def load_image(image_name):
 
 def extract_rectangle(image, rect):
     x, y, height, width = rect
-    print(x, y, height, width)
     return image[y:y + height, x:x + width]

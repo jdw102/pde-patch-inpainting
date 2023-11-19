@@ -1,5 +1,5 @@
-from code.image_util import extract_rectangle
-from code.texture_transfer import generate_texture_transfer
+from src.image_util import extract_rectangle
+from src.texture_transfer import generate_texture_transfer
 import cv2 as cv
 
 

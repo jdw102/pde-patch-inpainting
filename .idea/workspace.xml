@@ -5,18 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="118865ce-90c3-48be-9646-351182c55d9f" name="Changes" comment="fix implementation of transfer">
-      <change beforePath="$PROJECT_DIR$/.idea/pde-patch-inpainting.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pde-patch-inpainting.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/transfer_script/findBoundaryHelper1.asv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/transfer_script/findBoundaryHelper1.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/transfer_script/findBoundaryHelper2.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/transfer_script/givePatch1.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/transfer_script/transfer.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/translation_attempt/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/findBoundryHelper1.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/findBoundryHelper1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/findBoundryHelper2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/findBoundryHelper2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/givePatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/givePatch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/givePatch1.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/givePatch1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/image_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/image_util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/pde_patch_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pde_patch_pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/texture_transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/texture_transfer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/transfer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/findBoundryHelper1.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/translation_attempt/findBoundryHelper1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/findBoundryHelper2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/translation_attempt/findBoundryHelper2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/givePatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/translation_attempt/givePatch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/givePatch1.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/translation_attempt/givePatch1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pde_patch_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pde_patch_pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/texture_transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/texture_transfer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/translation_attempt/transfer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +69,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/jwort/PycharmProjects/ece588/data&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/jwort/PycharmProjects/ece588/src/transfer_script&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -77,11 +80,42 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jwort\PycharmProjects\ece588\src\transfer_script" />
       <recent name="C:\Users\jwort\PycharmProjects\ece588\data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jwort\PycharmProjects\ece588\src\translation_attempt" />
       <recent name="C:\Users\ayhon\pde-patch-inpainting\code" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="texture_transfer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pde-patch-inpainting" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/texture_transfer.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.texture_transfer" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -102,7 +136,20 @@
       <workItem from="1700254479968" duration="1782000" />
       <workItem from="1700257936991" duration="621000" />
       <workItem from="1700258575179" duration="452000" />
-      <workItem from="1700358958760" duration="6357000" />
+      <workItem from="1700358958760" duration="9120000" />
+      <workItem from="1700448550199" duration="47000" />
+      <workItem from="1700517163095" duration="22056000" />
+      <workItem from="1700609387808" duration="294000" />
+      <workItem from="1700616075133" duration="454000" />
+      <workItem from="1700616542920" duration="38000" />
+      <workItem from="1700616778131" duration="1198000" />
+      <workItem from="1700618801300" duration="133000" />
+      <workItem from="1700618948822" duration="318000" />
+      <workItem from="1700619374462" duration="339000" />
+      <workItem from="1700619729731" duration="4958000" />
+      <workItem from="1700624741223" duration="5000" />
+      <workItem from="1700625674663" duration="1918000" />
+      <workItem from="1700627622000" duration="1280000" />
     </task>
     <task id="LOCAL-00001" summary="fix implementation of transfer">
       <option name="closed" value="true" />
@@ -126,6 +173,9 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.m" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -142,12 +192,31 @@
     <MESSAGE value="Integrate helper functions with transfer" />
     <option name="LAST_COMMIT_MESSAGE" value="Integrate helper functions with transfer" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/translation_attempt/transfer.py</url>
+          <line>59</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="temp1" />
+      </configuration>
+    </watches-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pde_patch_inpainting$image_util.coverage" NAME="image_util Coverage Results" MODIFIED="1700258978238" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
     <SUITE FILE_PATH="coverage/pde_patch_inpainting$main.coverage" NAME="main Coverage Results" MODIFIED="1700004578348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ece588$main.coverage" NAME="main Coverage Results" MODIFIED="1700362686984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ece588$transfer.coverage" NAME="transfer Coverage Results" MODIFIED="1700374314821" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/ece588$findBoundryHelper2.coverage" NAME="findBoundryHelper2 Coverage Results" MODIFIED="1700599061669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/ece588$transfer.coverage" NAME="transfer Coverage Results" MODIFIED="1700607814833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/ece588$main.coverage" NAME="main Coverage Results" MODIFIED="1700628830777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pde_patch_inpainting$pde.coverage" NAME="pde Coverage Results" MODIFIED="1700004558655" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
     <SUITE FILE_PATH="coverage/ece588$pde.coverage" NAME="pde Coverage Results" MODIFIED="1700004286704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
+    <SUITE FILE_PATH="coverage/ece588$findBoundryHelper1.coverage" NAME="findBoundryHelper1 Coverage Results" MODIFIED="1700522100585" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/ece588$texture_transfer.coverage" NAME="texture_transfer Coverage Results" MODIFIED="1700627625828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
 </project>

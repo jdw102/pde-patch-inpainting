@@ -18,22 +18,24 @@ Adjusting Path Values: Modifies the path matrix based on certain conditions.
 # Translating MATLAB's findBoundaryHelper1 function to Python
 def find_boundary_helper1(error):
     x, y = error.shape
-    path = np.zeros_like(error)
-    cost = np.zeros_like(error)
-    cost[-1, :] = error[-1, :]
-
+    path = np.zeros(error.shape)
+    cost = np.zeros(error.shape)
+    cost[x - 1, :] = error[x - 1, :]
     for i in range(x - 2, -1, -1):
-        mintree = np.vstack([
-            np.pad(cost[i + 1, :-1], (1, 0), 'constant', constant_values=np.inf),
-            cost[i + 1, :],
-            np.pad(cost[i + 1, 1:], (0, 1), 'constant', constant_values=np.inf)
-        ]) + error[i, :]
-        cost[i, :], path[i, :] = np.min(mintree, axis=0), np.argmin(mintree, axis=0)
-
+        a = cost[i+1, 0:y-1]
+        a = np.insert(a, 0, np.inf)
+        b = cost[i+1,:]
+        c = cost[i+1, 1:y]
+        if len(c) == 0:
+            c = np.insert(c, 0, np.inf)
+        else:
+            c = np.insert(c, -1, np.inf)
+        mintree = np.array([a,
+                            b,
+                            c]) + error[i, :]
+        cost[i, :], path[i, :] = np.min(mintree, axis=0), np.argmin(mintree) + 1
     path[path == 2] = 0
     path[path == 1] = -1
     path[path == 3] = 1
     return cost, path
 
-# Displaying the Python function for verification
-find_boundary_helper1

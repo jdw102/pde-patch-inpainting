@@ -14,13 +14,11 @@ import numpy as np
 def find_boundary_helper2(path, ind):
     m, _ = path.shape
     boundary = np.zeros_like(path)
-    boundary[0, :ind] = 1
+    boundary[0, :ind + 1] = 1
     prev = ind
-
-    for i in range(1, m - 1):
-        prev = int(prev + path[i - 1, prev])
-        boundary[i, 0:prev] = 1
-
+    for i in range(1, m):
+        prev += int(path[i - 1, prev])
+        boundary[i, 0:prev+1] = 1
     return boundary
 
 # Displaying the Python function for verification

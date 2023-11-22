@@ -149,7 +149,7 @@ def texture_transfer(a, b):
         cv.imshow("iter " + str(p), output)
         cv.waitKey(0)
 
-if __name__ == "__main__":
-    texture_image = cv.imread("../../data/texture.jpg")
-    image = cv.imread("../../data/restored.jpg")
-    texture_transfer(texture_image.astype(float) / 255.0, image.astype(float) / 255.0)
+# if __name__ == "__main__":
+#     texture_image = cv.imread("../../data/texture.jpg")
+#     image = cv.imread("../../data/restored.jpg")
+#     texture_transfer(texture_image.astype(float) / 255.0, image.astype(float) / 255.0)

@@ -6,18 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="118865ce-90c3-48be-9646-351182c55d9f" name="Changes" comment="fix implementation of transfer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/restored.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/target.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/texture.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/texture_patch1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/texture_patch2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/image_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/image_util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pde_patch_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/restore.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/texture_transfer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/transfer_script/findBoundaryHelper1.asv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/transfer_script/transfer.m" beforeDir="false" afterPath="$PROJECT_DIR$/src/transfer_script/transfer.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/translation_attempt/transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/translation_attempt/transfer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/restore.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/restore.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +57,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/jwort/PycharmProjects/ece588/src/transfer_script&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/jwort/PycharmProjects/ece480/project&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -150,7 +140,9 @@
       <workItem from="1700625674663" duration="1918000" />
       <workItem from="1700627622000" duration="1280000" />
       <workItem from="1700628921645" duration="29000" />
-      <workItem from="1700675993072" duration="5562000" />
+      <workItem from="1700675993072" duration="5895000" />
+      <workItem from="1700875607657" duration="331000" />
+      <workItem from="1701110267670" duration="1526000" />
     </task>
     <task id="LOCAL-00001" summary="fix implementation of transfer">
       <option name="closed" value="true" />
@@ -214,11 +206,11 @@
     <SUITE FILE_PATH="coverage/pde_patch_inpainting$main.coverage" NAME="main Coverage Results" MODIFIED="1700004578348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ece588$findBoundryHelper2.coverage" NAME="findBoundryHelper2 Coverage Results" MODIFIED="1700599061669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/ece588$transfer.coverage" NAME="transfer Coverage Results" MODIFIED="1700607814833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/ece588$main.coverage" NAME="main Coverage Results" MODIFIED="1700682338986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/ece588$main.coverage" NAME="main Coverage Results" MODIFIED="1701115821546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/pde_patch_inpainting$pde.coverage" NAME="pde Coverage Results" MODIFIED="1700004558655" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
     <SUITE FILE_PATH="coverage/ece588$image_util.coverage" NAME="image_util Coverage Results" MODIFIED="1700680940745" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/ece588$pde.coverage" NAME="pde Coverage Results" MODIFIED="1700004286704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
     <SUITE FILE_PATH="coverage/ece588$findBoundryHelper1.coverage" NAME="findBoundryHelper1 Coverage Results" MODIFIED="1700522100585" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/ece588$texture_transfer.coverage" NAME="texture_transfer Coverage Results" MODIFIED="1700677611659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/ece588$texture_transfer.coverage" NAME="texture_transfer Coverage Results" MODIFIED="1701110273000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
 </project>

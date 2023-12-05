@@ -4,15 +4,24 @@ import matlab.engine
 import numpy as np
 
 
-def restore(damaged_image, mask, mask_rect, patch_width=8.0, alpha=0.43, iterations=1.0, texture_radius=20, inpaint_radius=3, inpaint_algorithm=cv.INPAINT_NS):
+def transfer_restore(damaged_image, mask, mask_rect, name="", save_initial=False, patch_width=8.0, alpha=0.43, iterations=1.0, texture_radius=20, inpaint_radius=3, inpaint_algorithm=cv.INPAINT_NS):
     x, y, width, height = mask_rect
     restored_image = pde_inpaint(damaged_image, cv.cvtColor(mask, cv.COLOR_BGR2GRAY), inpaint_radius, inpaint_algorithm)
+    if save_initial:
+        cv.imwrite(f"../data/results/{name}-pde-tr{texture_radius}-alg{inpaint_algorithm == cv.INPAINT_NS}.jpg", restored_image)
     initial_patch = create_input_patch(mask, restored_image, int(patch_width))
     source_texture = create_texture_patch(mask, restored_image, texture_radius)
     texture_patch = texture_transfer(source_texture, initial_patch, patch_width, alpha, iterations)
     extract_middle(texture_patch, restored_image[y:y+height, x:x+width])
     return restored_image
 
+
+def synthesis_restore(damaged_image, mask_rect, texture_rect, patch_width=8.0):
+    x, y, width, height = mask_rect
+    source_texture = extract_rectangle(damaged_image, texture_rect)
+    texture_patch = texture_synthesis(source_texture, patch_width, (width, height))
+    damaged_image[y:y+height, x:x+width] = texture_patch
+    return damaged_image
 
 def pde_inpaint(image, mask, radius=3, algorithm=cv.INPAINT_NS):
     return cv.inpaint(image, mask, inpaintRadius=radius, flags=algorithm)
@@ -28,6 +37,15 @@ def texture_transfer(input_texture, target_image, width, alpha, iterations):
     eng.quit()
     return np.array(result) * 255
 
+
+def texture_synthesis(input_texture, width, size):
+    eng = matlab.engine.start_matlab()
+    path = "./transfer_script"
+    eng.addpath(path, nargout=0)
+    input_texture = np.ascontiguousarray(input_texture)
+    result = eng.synthesis(input_texture.astype(float) / 255.0, width, size[0], size[1])
+    eng.quit()
+    return np.array(result) * 255
 
 def create_texture_patch(mask, image, radius):
     new_mask, mask_rect = square_border(mask, radius)

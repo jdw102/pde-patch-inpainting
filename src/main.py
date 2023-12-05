@@ -13,19 +13,16 @@ def test(damage_rect, image_name, name,
          texture_radius=20,
          inpainting_radius=3,
          algorithm=cv.INPAINT_NS,
-         synth_rect=None,
-         save=True):
+         synth_rect=None):
     damaged_image, mask, original = load_damaged_image(damage_rect, image_name)
-    if save:
-        cv.imwrite(f"../data/results/{name}-damaged.jpg", damaged_image)
+    cv.imwrite(f"../data/results/{name}-damaged.jpg", damaged_image)
     restored_image = transfer_restore(damaged_image, mask, damage_rect, name, True, patch_width, alpha, iterations,
                                       texture_radius, inpainting_radius, algorithm)
     if synth_rect is not None:
         synth_image = synthesis_restore(damaged_image, damage_rect, synth_rect, patch_width)
         cv.imwrite(f"../data/results/{name}-synthesis.jpg", synth_image)
     path = f"../data/results/{name}-w{patch_width}-al{alpha}-iter{iterations}-tr{texture_radius}-ir{inpainting_radius}-alg{algorithm == cv.INPAINT_NS}.jpg"
-    if save:
-        cv.imwrite(path, restored_image)
+    cv.imwrite(path, restored_image)
     return calculate_error(extract_rectangle(cv.imread(image_name), damage_rect),
                            extract_rectangle(restored_image, damage_rect))
 
@@ -37,65 +34,33 @@ def calculate_error(original, new):
     return mse
 
 
-def compare_width_error(original_name, restored_name):
-    alpha = 0.43
-    iterations = 1.0
-    texture_radius = 20
-    inpainting_radius = 3
-    algorithm = cv.INPAINT_NS
-    errors = []
-    widths = [5.0, 10.0, 15.0]
-    for i in widths:
-        patch_width = i
-        error = test((300, 250, 100, 100),
-                     f"../data/{original_name}.jpg", restored_name,
-                     patch_width, alpha, iterations, texture_radius, inpainting_radius, algorithm,
-                     None, False)
-        errors.append(error)
-    plot_error(widths, errors, "Error vs Patch Width", "Patch Width")
+def compare_width_error(damage_rect, original_name, restored_name, params):
+    widths = [1.0, 5.0, 10.0]
+    for width in widths:
+        params[0] = width
+        error = test(damage_rect, f"../data/{original_name}.jpg", restored_name, *params)
+        print(f"Error for width {width}: {error}")
 
 
-def compare_radius_error(damaged_rect, original_name, restored_name):
-    patch_width = 8.0
-    alpha = 0.43
-    iterations = 1.0
-    inpainting_radius = 3
-    algorithm = cv.INPAINT_NS
-    errors = []
-    radii = [10, 20, 30]
-    for i in radii:
-        texture_radius = i
-        error = test(damaged_rect,
-                     f"../data/{original_name}.jpg", restored_name,
-                     patch_width, alpha, iterations, texture_radius, inpainting_radius, algorithm,
-                     None, False)
-        errors.append(error)
-    plot_error(radii, errors, "Error vs Texture Radius", "Texture Radius", original_name)
-
-
-def plot_error(values, errors, title, x_label, original_name):
-    plt.plot(values, errors)
-    plt.title(title)
-    plt.xlabel(x_label)
-    plt.ylabel("MSE")
-    split = x_label.split("-")
-    save_name = ""
-    for word in split:
-        save_name += word.lower()
-    plt.savefig(f"../data/results/{save_name}-error-{original_name}.jpg")
+def compare_radius_error(damage_rect, original_name, restored_name, params):
+    radii = [20, 30, 40]
+    for radius in radii:
+        params[3] = radius
+        error = test(damage_rect, f"../data/{original_name}.jpg", restored_name, *params)
+        print(f"Error for radius {radius}: {error}")
 
 
 if __name__ == '__main__':
     ideal_settings = [
-        (10.0, 0.43, 1.0, 25, 3, cv.INPAINT_NS, (200, 350, 50, 50)),
-        (8.0, 0.43, 1.0, 20, 3, cv.INPAINT_NS, (150, 160, 25, 25)),
-        (5.0, 0.2, 1.0, 20, 3, cv.INPAINT_NS, (50, 150, 25, 25)),
-        (12.0, 0.73, 2.0, 30, 10, cv.INPAINT_NS, (200, 100, 50, 50))
+        [10.0, 0.43, 1.0, 25, 3, cv.INPAINT_NS, (200, 350, 50, 50)],
+        [8.0, 0.43, 1.0, 20, 3, cv.INPAINT_NS, (150, 160, 25, 25)],
+        [5.0, 0.2, 1.0, 20, 3, cv.INPAINT_NS, (50, 150, 25, 25)],
+        [12.0, 0.73, 2.0, 30, 10, cv.INPAINT_NS, (200, 100, 50, 50)]
     ]
-    compare_radius_error((300, 250, 100, 100), "Granite-Rock", "restored-rock")
-    compare_radius_error((150, 120, 48, 48), "leaves-cropped", "restored-leaves")
-    compare_radius_error((110, 10, 50, 50), "lion", "restored-lion")
-    compare_radius_error((300, 185, 108, 108), "sand", "restored-sand")
+    # compare_width_error((110, 10, 50, 50), "lion", "restored-lion",
+    #                     ideal_settings[2])
+    compare_radius_error((300, 185, 108, 108), "sand", "restored-sand",
+                         ideal_settings[3])
 
     # test((300, 250, 100, 100), "../data/Granite-Rock.jpg", "restored-rocks", *ideal_settings[0])
 

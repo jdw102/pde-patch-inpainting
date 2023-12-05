@@ -43,7 +43,7 @@ def compare_width_error(damage_rect, original_name, restored_name, params):
 
 
 def compare_radius_error(damage_rect, original_name, restored_name, params):
-    radii = [20, 30, 40]
+    radii = [20, 25, 30]
     for radius in radii:
         params[3] = radius
         error = test(damage_rect, f"../data/{original_name}.jpg", restored_name, *params)
@@ -68,4 +68,4 @@ if __name__ == '__main__':
 
     # test((110, 10, 50, 50), "../data/lion.jpg", "restored-lion", *ideal_settings[2])
 
-    # test((300, 185, 108, 108), "../data/sand.jpg","restored-sand", *ideal_settings[3])
+    test((300, 185, 108, 108), "../data/sand.jpg","restored-sand", *ideal_settings[3])
